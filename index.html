@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gabi Looney Floral</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Parisienne&family=Pacifico&display=swap" rel="stylesheet">
     
     <style>
         /* CSS Variables based on the logo's color palette */
@@ -88,18 +88,20 @@
             padding: 0 1rem;
         }
 
-        .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 0;
-            line-height: 1;
+        /* SVG Logo Styling for Responsiveness */
+        .hero-logo-svg {
+            width: 100%;
+            max-width: 400px; /* Keeps the logo from getting too massive on large screens */
+            height: auto;
+            margin-bottom: 2rem;
         }
 
         .hero-image-placeholder {
             width: 100%;
             max-width: 600px;
             height: 400px;
-            background-color: #EBE5DB; /* Slightly darker cream for contrast */
-            margin-top: 3rem;
+            background-color: #EBE5DB; 
+            margin-top: 1rem;
             border-radius: 4px;
             display: flex;
             justify-content: center;
@@ -169,8 +171,7 @@
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
-            .nav-links { display: none; } /* Simplified for mobile snippet */
+            .nav-links { display: none; } 
         }
     </style>
 </head>
@@ -187,8 +188,35 @@
     </nav>
 
     <section class="hero">
-        <h1>Gabi looney</h1>
-        <p class="subtext">🌿 floral 🌿</p>
+        
+        <svg class="hero-logo-svg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            .script { font-family: 'Pacifico', cursive; fill: #6F7D5C; }
+            .sub { font-family: serif; fill: #9C8F7A; letter-spacing: 3px; }
+          </style>
+
+          <g transform="translate(250,180)">
+            <text x="-90" y="0" font-size="140" class="script">G</text>
+
+            <circle cx="-30" cy="-10" r="18" fill="#E8D8C3"/>
+            <circle cx="-30" cy="-10" r="6" fill="#C9A66B"/>
+
+            <ellipse cx="-55" cy="10" rx="18" ry="8" fill="#6F7D5C" transform="rotate(-30 -55 10)"/>
+            <ellipse cx="-10" cy="15" rx="18" ry="8" fill="#6F7D5C" transform="rotate(30 -10 15)"/>
+
+            <path d="M -30 5 Q -40 30 -20 50" stroke="#6F7D5C" stroke-width="2" fill="none"/>
+          </g>
+
+          <text x="250" y="360" font-size="48" text-anchor="middle" class="script">Gabi</text>
+          <text x="250" y="420" font-size="48" text-anchor="middle" class="script">looney</text>
+
+          <text x="250" y="480" font-size="18" text-anchor="middle" class="sub">FLORAL</text>
+
+          <g stroke="#6F7D5C" stroke-width="2">
+            <line x1="160" y1="475" x2="190" y2="475"/>
+            <line x1="310" y1="475" x2="340" y2="475"/>
+          </g>
+        </svg>
         
         <div class="hero-image-placeholder">
             [ Placeholder for a gorgeous, sunbaked floral arrangement photo ]
