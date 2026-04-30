@@ -3,254 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabi Looney Floral</title>
+    <title>Gabi Looney | Bespoke Floral Design</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Parisienne&family=Pacifico&display=swap" rel="stylesheet">
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
-        /* CSS Variables based on the logo's color palette */
+        /* High-End Color Palette */
         :root {
-            --cream-bg: #FAF8F4;
-            --sage-green: #74836E;
-            --warm-taupe: #A68D77;
-            --text-dark: #4A4A4A;
+            --cream: #FAF8F4;
+            --sage: #74836E;
+            --taupe: #A68D77;
+            --dark: #3A3A3A;
+            --transition: cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        /* Global Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Smooth Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background-color: var(--cream-bg);
-            color: var(--text-dark);
+            background-color: var(--cream);
+            color: var(--dark);
             font-family: 'Lato', sans-serif;
-            line-height: 1.6;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Typography */
-        h1, h2, h3, .brand-script {
-            font-family: 'Parisienne', cursive;
-            color: var(--sage-green);
-            font-weight: normal;
+        /* Subtle Paper Grain Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        .subtext {
-            color: var(--warm-taupe);
+        /* Typography */
+        h1, h2, .script-font {
+            font-family: 'Parisienne', cursive;
+            color: var(--sage);
+            font-weight: 400;
+        }
+        
+        .sub {
             text-transform: uppercase;
-            letter-spacing: 0.4em;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
+            letter-spacing: 0.3em;
+            font-size: 0.75rem;
+            color: var(--taupe);
         }
 
         /* Navigation */
         nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 2rem 4vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 5%;
+            z-index: 100;
+            mix-blend-mode: difference; /* Creates a cool effect over images */
         }
 
-        .nav-logo {
-            font-size: 2rem;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
+        .logo-text { font-size: 1.5rem; color: #fff; text-decoration: none; }
+        
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
         .nav-links a {
+            color: #fff;
             text-decoration: none;
-            color: var(--text-dark);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.8rem;
-            transition: color 0.3s ease;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            position: relative;
         }
-
-        .nav-links a:hover {
-            color: var(--sage-green);
+        
+        /* Premium Hover Underline */
+        .nav-links a::after {
+            content: ''; position: absolute;
+            width: 0; height: 1px;
+            bottom: -4px; left: 0;
+            background-color: #fff;
+            transition: width 0.4s var(--transition);
         }
+        .nav-links a:hover::after { width: 100%; }
 
-        /* Hero Section */
+        /* Hero Section (Asymmetric Split) */
         .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5vw;
+        }
+
+        .hero-content {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-height: 70vh;
-            padding: 0 1rem;
+            align-items: flex-start;
+            padding-top: 5vh;
         }
 
-        /* SVG Logo Styling for Responsiveness */
         .hero-logo-svg {
             width: 100%;
-            max-width: 400px; /* Keeps the logo from getting too massive on large screens */
+            max-width: 450px;
             height: auto;
-            margin-bottom: 2rem;
         }
 
-        .hero-image-placeholder {
-            width: 100%;
-            max-width: 600px;
-            height: 400px;
-            background-color: #EBE5DB; 
-            margin-top: 1rem;
-            border-radius: 4px;
+        /* Editorial Arched Image Placeholder */
+        .hero-image-wrapper {
+            flex: 1;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
+            height: 80vh;
+        }
+
+        .hero-image {
+            width: 80%;
+            height: 100%;
+            background-color: #E6DFD3;
+            border-radius: 250px 250px 0 0; /* The Arch */
+            display: flex;
             align-items: center;
-            color: var(--warm-taupe);
+            justify-content: center;
+            color: var(--taupe);
             font-style: italic;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Services Section */
-        .services {
-            padding: 5rem 5%;
-            text-align: center;
-        }
-
-        .services h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
+        /* Services Section (Staggered Layout) */
+        .services { padding: 15vh 5vw; }
+        .services-header { text-align: center; margin-bottom: 10vh; }
+        .services-header h2 { font-size: clamp(3rem, 6vw, 5rem); }
+        
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4vw;
         }
 
         .service-card {
-            padding: 2rem;
-            border: 1px solid rgba(166, 141, 119, 0.2);
-            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
+        /* Stagger the middle card down */
+        .service-card:nth-child(2) { margin-top: 10vh; }
+
+        .service-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: #E6DFD3;
+            margin-bottom: 2rem;
+            border-radius: 4px;
         }
 
         .service-card h3 {
-            font-size: 2.5rem;
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            color: var(--sage);
         }
 
-        .btn {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.8rem 2rem;
-            background-color: transparent;
-            color: var(--sage-green);
-            border: 1px solid var(--sage-green);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--sage-green);
-            color: var(--cream-bg);
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--dark);
+            line-height: 1.8;
         }
 
         /* Footer */
         footer {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--sage);
+            color: var(--cream);
             text-align: center;
-            padding: 3rem 1rem;
-            border-top: 1px solid rgba(166, 141, 119, 0.2);
-            margin-top: 3rem;
         }
+        footer h2 { color: var(--cream); font-size: 4rem; }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; } 
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; justify-content: center; text-align: center; height: auto; padding-top: 15vh; }
+            .hero-content { align-items: center; margin-bottom: 5vh; }
+            .hero-image-wrapper { width: 100%; height: 60vh; justify-content: center; }
+            .hero-image { width: 100%; border-radius: 200px 200px 0 0; }
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card:nth-child(2) { margin-top: 0; }
+            .nav-links { display: none; }
+            nav { mix-blend-mode: normal; background: var(--sage); padding: 1rem 4vw; }
+            .logo-text { color: var(--cream); }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="nav-logo brand-script">Gabi Looney</a>
+        <a href="#" class="logo-text script-font">Gabi Looney</a>
         <ul class="nav-links">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Studio</a></li>
             <li><a href="#">Weddings</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#">Journal</a></li>
+            <li><a href="#">Inquire</a></li>
         </ul>
     </nav>
 
     <section class="hero">
-        
-        <svg class="hero-logo-svg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
-          <style>
-            .script { font-family: 'Pacifico', cursive; fill: #6F7D5C; }
-            .sub { font-family: serif; fill: #9C8F7A; letter-spacing: 3px; }
-          </style>
+        <div class="hero-content" class="gsap-fade-up">
+            <svg class="hero-logo-svg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
+              <style>
+                .script { font-family: 'Pacifico', cursive; fill: #6F7D5C; }
+                .sub-svg { font-family: 'Lato', sans-serif; fill: #A68D77; letter-spacing: 4px; font-weight: 300;}
+              </style>
+              <g transform="translate(250,220)">
+                <text x="-90" y="0" font-size="140" class="script">G</text>
+                <circle cx="-30" cy="-10" r="18" fill="#E8D8C3"/>
+                <circle cx="-30" cy="-10" r="6" fill="#C9A66B"/>
+                <ellipse cx="-55" cy="10" rx="18" ry="8" fill="#6F7D5C" transform="rotate(-30 -55 10)"/>
+                <ellipse cx="-10" cy="15" rx="18" ry="8" fill="#6F7D5C" transform="rotate(30 -10 15)"/>
+                <path d="M -30 5 Q -40 30 -20 50" stroke="#6F7D5C" stroke-width="2" fill="none"/>
+              </g>
+              <text x="250" y="380" font-size="54" text-anchor="middle" class="script">Gabi</text>
+              <text x="250" y="450" font-size="54" text-anchor="middle" class="script">looney</text>
+              <text x="250" y="520" font-size="16" text-anchor="middle" class="sub-svg">F L O R A L</text>
+              <g stroke="#6F7D5C" stroke-width="1">
+                <line x1="160" y1="515" x2="190" y2="515"/>
+                <line x1="310" y1="515" x2="340" y2="515"/>
+              </g>
+            </svg>
+        </div>
 
-          <g transform="translate(250,180)">
-            <text x="-90" y="0" font-size="140" class="script">G</text>
-
-            <circle cx="-30" cy="-10" r="18" fill="#E8D8C3"/>
-            <circle cx="-30" cy="-10" r="6" fill="#C9A66B"/>
-
-            <ellipse cx="-55" cy="10" rx="18" ry="8" fill="#6F7D5C" transform="rotate(-30 -55 10)"/>
-            <ellipse cx="-10" cy="15" rx="18" ry="8" fill="#6F7D5C" transform="rotate(30 -10 15)"/>
-
-            <path d="M -30 5 Q -40 30 -20 50" stroke="#6F7D5C" stroke-width="2" fill="none"/>
-          </g>
-
-          <text x="250" y="360" font-size="48" text-anchor="middle" class="script">Gabi</text>
-          <text x="250" y="420" font-size="48" text-anchor="middle" class="script">looney</text>
-
-          <text x="250" y="480" font-size="18" text-anchor="middle" class="sub">FLORAL</text>
-
-          <g stroke="#6F7D5C" stroke-width="2">
-            <line x1="160" y1="475" x2="190" y2="475"/>
-            <line x1="310" y1="475" x2="340" y2="475"/>
-          </g>
-        </svg>
-        
-        <div class="hero-image-placeholder">
-            [ Placeholder for a gorgeous, sunbaked floral arrangement photo ]
+        <div class="hero-image-wrapper">
+            <div class="hero-image gsap-image-reveal">
+                <p>Editorial Image Placeholder</p>
+            </div>
         </div>
     </section>
 
     <section class="services">
-        <h2>Bespoke Botanicals</h2>
-        <p class="subtext">Artisanal designs for every occasion</p>
+        <div class="services-header gsap-fade-up">
+            <p class="sub" style="margin-bottom: 1rem;">Our Philosophy</p>
+            <h2>Artisanal Botanicals</h2>
+        </div>
 
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card gsap-fade-up">
+                <div class="service-img"></div>
                 <h3>Weddings</h3>
-                <p>Romantic, wild, and unforgettable floral styling tailored to your unique love story and vision.</p>
-                <a href="#" class="btn">Learn More</a>
+                <p>Romantic, untamed, and unforgettable floral styling tailored to the unique atmosphere of your celebration.</p>
             </div>
-            <div class="service-card">
-                <h3>Events</h3>
-                <p>Curated centerpieces and atmospheric installations that elevate your gatherings and special occasions.</p>
-                <a href="#" class="btn">Learn More</a>
+            <div class="service-card gsap-fade-up">
+                <div class="service-img"></div>
+                <h3>Editorials</h3>
+                <p>Collaborative floral artistry for brand campaigns, photoshoots, and creative installations.</p>
             </div>
-            <div class="service-card">
-                <h3>Everyday</h3>
-                <p>Hand-tied, seasonal bouquets designed to bring a touch of natural beauty into your daily life.</p>
-                <a href="#" class="btn">Shop Now</a>
+            <div class="service-card gsap-fade-up">
+                <div class="service-img"></div>
+                <h3>The Studio</h3>
+                <p>Discover our approach to sustainable floristry, combining locally sourced blooms with timeless design principles.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <h2 class="brand-script" style="font-size: 2.5rem;">Gabi looney</h2>
-        <p class="subtext" style="margin-bottom: 1rem;">floral</p>
-        <p style="font-size: 0.8rem; color: var(--text-dark);">© 2026 Gabi Looney Floral Design. All rights reserved.</p>
+        <div class="gsap-fade-up">
+            <h2>Gabi looney</h2>
+            <p class="sub" style="color: #E6DFD3; margin-top: 1rem;">Est. 2026</p>
+        </div>
     </footer>
 
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initial Load Animations
+        let tl = gsap.timeline();
+        
+        tl.from(".hero-logo-svg", {
+            y: 50, opacity: 0, duration: 1.5, ease: "power3.out"
+        })
+        .from(".hero-image", {
+            y: 100, opacity: 0, duration: 1.5, ease: "power3.out"
+        }, "-=1.2")
+        .from("nav", {
+            y: -20, opacity: 0, duration: 1, ease: "power2.out"
+        }, "-=1");
+
+        // Scroll Animations for Services
+        gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+        });
+    </script>
 </body>
 </html>
