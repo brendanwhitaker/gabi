@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabi Looney Floral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Parisienne&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables based on the logo's color palette */
+        :root {
+            --cream-bg: #FAF8F4;
+            --sage-green: #74836E;
+            --warm-taupe: #A68D77;
+            --text-dark: #4A4A4A;
+        }
+
+        /* Global Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--cream-bg);
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, .brand-script {
+            font-family: 'Parisienne', cursive;
+            color: var(--sage-green);
+            font-weight: normal;
+        }
+
+        .subtext {
+            color: var(--warm-taupe);
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+        }
+
+        .nav-logo {
+            font-size: 2rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--sage-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 70vh;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background-color: #EBE5DB; /* Slightly darker cream for contrast */
+            margin-top: 3rem;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--warm-taupe);
+            font-style: italic;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            border: 1px solid rgba(166, 141, 119, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background-color: transparent;
+            color: var(--sage-green);
+            border: 1px solid var(--sage-green);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--sage-green);
+            color: var(--cream-bg);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 1px solid rgba(166, 141, 119, 0.2);
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .nav-links { display: none; } /* Simplified for mobile snippet */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-logo brand-script">Gabi Looney</a>
+        <ul class="nav-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Weddings</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Gabi looney</h1>
+        <p class="subtext">🌿 floral 🌿</p>
+        
+        <div class="hero-image-placeholder">
+            [ Placeholder for a gorgeous, sunbaked floral arrangement photo ]
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>Bespoke Botanicals</h2>
+        <p class="subtext">Artisanal designs for every occasion</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Weddings</h3>
+                <p>Romantic, wild, and unforgettable floral styling tailored to your unique love story and vision.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+            <div class="service-card">
+                <h3>Events</h3>
+                <p>Curated centerpieces and atmospheric installations that elevate your gatherings and special occasions.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+            <div class="service-card">
+                <h3>Everyday</h3>
+                <p>Hand-tied, seasonal bouquets designed to bring a touch of natural beauty into your daily life.</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2 class="brand-script" style="font-size: 2.5rem;">Gabi looney</h2>
+        <p class="subtext" style="margin-bottom: 1rem;">floral</p>
+        <p style="font-size: 0.8rem; color: var(--text-dark);">© 2026 Gabi Looney Floral Design. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
