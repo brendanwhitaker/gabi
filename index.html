@@ -149,7 +149,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(248, 245, 240, 1) 0%, rgba(248, 245, 240, 0) 100%);
+            background: transparent;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
             z-index: 100;
         }
         
@@ -239,6 +243,30 @@
             max-width: 300px;
             opacity: 0.8;
             font-weight: 200;
+        }
+
+        .service-mark {
+            width: var(--space-16);
+            height: var(--space-16);
+            margin-bottom: var(--space-4);
+            background-color: var(--parchment);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            opacity: 0.92;
+        }
+
+        .service-mark-wedding {
+            -webkit-mask-image: url('assets/wedding.svg');
+            mask-image: url('assets/wedding.svg');
+        }
+
+        .service-mark-corporate {
+            -webkit-mask-image: url('assets/corporate.svg');
+            mask-image: url('assets/corporate.svg');
         }
 
         /* Contact */
@@ -381,7 +409,7 @@
     </nav>
 
     <section class="hero">
-        <img src="GL Floral transparent.png" alt="Gabi Looney Floral Botanical Mark" class="hero-logo reveal reveal-delay-1">
+        <img src="assets/gl-floral.png" alt="Gabi Looney Floral Botanical Mark" class="hero-logo reveal reveal-delay-1">
         
         <h1 class="reveal reveal-delay-2">Florals that change the room.</h1>
         <div class="reveal reveal-delay-2">
@@ -398,14 +426,16 @@
     <section id="services" class="services">
         <div class="services-grid">
             <div class="service-col">
+                <div class="service-mark service-mark-wedding" role="img" aria-label="Wedding floral mark"></div>
                 <h2>The Celebration.</h2>
                 <p>Florals designed around the feeling of your day. Loose, sculptural, and deeply personal—from the bouquet to the final tablescape.</p>
                 <a href="#contact" class="link-delicate link-inverse">Inquire for Weddings</a>
             </div>
-            
+
             <div class="service-divider"></div>
 
             <div class="service-col">
+                <div class="service-mark service-mark-corporate" role="img" aria-label="Corporate floral mark"></div>
                 <h2>The District.</h2>
                 <p>Bringing warmth to structured spaces. Striking gala installations and botanical retainers that elevate the daily environment.</p>
                 <a href="#contact" class="link-delicate link-inverse">Inquire for Events</a>
