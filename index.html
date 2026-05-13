@@ -41,7 +41,6 @@
             color: var(--charcoal);
             font-family: 'Inter', sans-serif;
             font-weight: 300;
-            /* Strict baseline adherence for body copy */
             font-size: 1rem; 
             line-height: var(--space-4); 
             overflow-x: hidden;
@@ -49,7 +48,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* The Reveal Animation */
         @keyframes softReveal {
             0% { opacity: 0; transform: translateY(var(--space-2)); }
             100% { opacity: 1; transform: translateY(0); }
@@ -59,44 +57,32 @@
         .reveal-delay-1 { animation-delay: 0.3s; opacity: 0; }
         .reveal-delay-2 { animation-delay: 0.6s; opacity: 0; }
 
-        /* --- TYPOGRAPHIC HIERARCHY --- */
-        
-        /* H1: Massive scale. Razor sharp. (No inkbleed) */
+        /* --- TYPOGRAPHY --- */
         h1 {
             font-family: 'Fraunces', serif;
             font-weight: 200;
             font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
             font-size: 6rem;
-            line-height: var(--space-12); /* 96px line height aligns to grid */
+            line-height: var(--space-12);
             letter-spacing: -0.02em;
             margin-bottom: var(--space-8);
-            color: var(--charcoal);
         }
 
-        /* H2: Large scale. A whisper of softness. */
         h2 {
             font-family: 'Fraunces', serif;
             font-weight: 200;
             font-variation-settings: 'opsz' 144, 'SOFT' 10, 'WONK' 1;
             font-size: 4rem;
-            line-height: var(--space-8); /* 64px line height */
+            line-height: var(--space-8);
             letter-spacing: -0.02em;
             margin-bottom: var(--space-4);
         }
 
-        /* Manifesto Text: Elegant, airy reading. */
-        .manifesto-inner p {
-            font-size: 1.5rem;
-            line-height: var(--space-6); /* 48px line height */
-            color: rgba(34, 34, 34, 0.85);
-        }
-
-        /* Micro-text: Utilitarian, locks to a tight grid. */
         .micro-text {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            font-size: 0.625rem; /* 10px */
-            line-height: var(--space-2); /* 16px */
+            font-size: 0.625rem;
+            line-height: var(--space-2);
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: rgba(34, 34, 34, 0.6);
@@ -107,7 +93,7 @@
             font-weight: 400;
         }
 
-        /* --- DELICATE UI ELEMENTS --- */
+        /* --- UI ELEMENTS --- */
         .link-delicate {
             display: inline-block;
             font-family: 'Inter', sans-serif;
@@ -119,14 +105,12 @@
             color: var(--charcoal);
             text-decoration: none;
             padding-bottom: var(--space-1);
-            /* Box-shadow used instead of border-bottom to preserve grid math */
             box-shadow: inset 0 -1px 0 0 var(--hairline-dark);
             transition: all 0.5s ease;
         }
 
         .link-delicate:hover {
             box-shadow: inset 0 -1px 0 0 var(--charcoal);
-            color: #000;
         }
 
         .link-inverse {
@@ -134,17 +118,12 @@
             box-shadow: inset 0 -1px 0 0 var(--hairline-light);
         }
 
-        .link-inverse:hover {
-            box-shadow: inset 0 -1px 0 0 var(--parchment);
-            color: #FFF;
-        }
-
-        /* --- STRUCTURAL LAYOUT --- */
+        /* --- SECTION STYLES --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            height: var(--space-16); /* Exactly 128px high */
+            height: var(--space-16);
             padding: 0 var(--space-8);
             display: flex;
             justify-content: space-between;
@@ -152,27 +131,7 @@
             background: linear-gradient(to bottom, rgba(248, 245, 240, 1) 0%, rgba(248, 245, 240, 0) 100%);
             z-index: 100;
         }
-        
-        .nav-logo {
-            font-size: 2rem;
-            line-height: var(--space-8);
-            color: var(--charcoal);
-            text-decoration: none;
-        }
 
-        .nav-links {
-            display: flex;
-            gap: var(--space-8);
-            align-items: center;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            transition: color 0.4s;
-        }
-        .nav-links a:hover { color: #000; }
-
-        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -180,35 +139,26 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: var(--space-24) var(--space-4) 0 var(--space-4);
+            padding-top: var(--space-24);
         }
 
         .hero-logo {
-            width: var(--space-24); /* Locks exactly to grid scale */
+            width: var(--space-24);
             height: auto;
             margin-bottom: var(--space-8);
-            opacity: 0.9; /* Softens the true black slightly to match Charcoal */
-            /* filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.05)); Optional soft shadow */
+            opacity: 0.9;
         }
 
-        /* Manifesto */
         .manifesto {
             padding: var(--space-24) var(--space-8); 
             display: flex;
             justify-content: center;
         }
 
-        .manifesto-inner {
-            max-width: 700px;
-            text-align: center;
-        }
-
-        /* Services (The Oxblood Section) */
+        /* --- SERVICES (OXBLOOD) --- */
         .services {
             background-color: var(--oxblood);
             color: var(--parchment);
-            display: flex;
-            flex-direction: column;
             padding: var(--space-24) var(--space-8);
         }
 
@@ -217,13 +167,6 @@
             grid-template-columns: 1fr 1px 1fr;
             max-width: 1200px;
             margin: 0 auto;
-            width: 100%;
-        }
-
-        .service-divider {
-            background-color: var(--hairline-light);
-            height: 100%;
-            width: 1px;
         }
 
         .service-col {
@@ -234,14 +177,23 @@
             text-align: center;
         }
 
-        .service-col p {
+        /* Service Stamp Styling */
+        .service-stamp {
+            width: var(--space-16); /* 128px scale */
+            height: auto;
             margin-bottom: var(--space-8);
-            max-width: 300px;
-            opacity: 0.8;
-            font-weight: 200;
+            /* Inverts black SVGs to Parchment to match the theme */
+            filter: invert(98%) sepia(5%) saturate(297%) hue-rotate(334deg) brightness(102%) contrast(94%);
+            opacity: 0.9;
         }
 
-        /* Contact */
+        .service-divider {
+            background-color: var(--hairline-light);
+            height: 100%;
+            width: 1px;
+        }
+
+        /* --- CONTACT & FOOTER --- */
         .contact {
             padding: var(--space-24) var(--space-8);
             position: relative;
@@ -257,21 +209,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 50rem;
-            line-height: 0;
             color: var(--charcoal);
             opacity: 0.02;
             pointer-events: none;
-        }
-
-        .contact h2 {
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact > p {
-            margin-bottom: var(--space-12);
-            position: relative;
-            z-index: 2;
         }
 
         form {
@@ -283,10 +223,8 @@
 
         .form-group {
             margin-bottom: var(--space-8);
-            position: relative;
         }
 
-        /* Form Inputs: Smaller size, higher SOFT axis for true inkbleed */
         .form-group input {
             width: 100%;
             background: transparent;
@@ -295,43 +233,13 @@
             padding: var(--space-2) 0;
             font-family: 'Fraunces', serif; 
             font-size: 1.5rem;
-            line-height: var(--space-4);
-            font-weight: 200;
-            /* Dialed down opsz, dialed up SOFT for tactile ink pooling */
             font-variation-settings: 'opsz' 72, 'SOFT' 50, 'WONK' 1;
             color: var(--charcoal);
             outline: none;
-            transition: box-shadow 0.6s ease;
         }
 
-        .form-group input:focus {
-            box-shadow: inset 0 -1px 0 0 rgba(34, 34, 34, 0.6);
-        }
-
-        .form-group input::placeholder {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 0.625rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(34, 34, 34, 0.4);
-            transform: translateY(-8px);
-        }
-
-        .form-submit {
-            text-align: center;
-            margin-top: var(--space-12);
-        }
-
-        .form-submit button {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Footer */
         footer {
-            padding: var(--space-12) var(--space-8) var(--space-8) var(--space-8);
+            padding: var(--space-12) var(--space-8);
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -349,23 +257,11 @@
             align-items: center;
         }
 
-        .footer-links {
-            display: flex;
-            gap: var(--space-8);
-        }
-
-        /* Responsive Breakpoints (Maintaining Math) */
         @media (max-width: 1000px) {
-            nav { padding: 0 var(--space-4); }
-            .nav-links a:not(.btn-nav) { display: none; }
             h1 { font-size: 4rem; line-height: var(--space-8); }
-            h2 { font-size: 3rem; line-height: var(--space-6); }
-            .manifesto-inner p { font-size: 1.125rem; line-height: var(--space-4); }
             .services-grid { grid-template-columns: 1fr; }
             .service-divider { width: 100%; height: 1px; }
-            .service-col { padding: var(--space-12) var(--space-4); }
-            .manifesto { padding: var(--space-16) var(--space-4); }
-            .contact { padding: var(--space-16) var(--space-4); }
+            .service-col { padding: var(--space-8) var(--space-4); }
         }
     </style>
 </head>
@@ -381,8 +277,7 @@
     </nav>
 
     <section class="hero">
-        <img src="GL Floral transparent.png" alt="Gabi Looney Floral Botanical Mark" class="hero-logo reveal reveal-delay-1">
-        
+        <img src="GL Floral transparent.png" alt="Gabi Looney Floral" class="hero-logo reveal reveal-delay-1">
         <h1 class="reveal reveal-delay-2">Florals that change the room.</h1>
         <div class="reveal reveal-delay-2">
             <a href="#contact" class="link-delicate">Begin a conversation</a>
@@ -398,6 +293,7 @@
     <section id="services" class="services">
         <div class="services-grid">
             <div class="service-col">
+                <img src="wedding.svg" alt="Wedding Illustration" class="service-stamp">
                 <h2>The Celebration.</h2>
                 <p>Florals designed around the feeling of your day. Loose, sculptural, and deeply personal—from the bouquet to the final tablescape.</p>
                 <a href="#contact" class="link-delicate link-inverse">Inquire for Weddings</a>
@@ -406,6 +302,7 @@
             <div class="service-divider"></div>
 
             <div class="service-col">
+                <img src="Corporate.svg" alt="Corporate Illustration" class="service-stamp">
                 <h2>The District.</h2>
                 <p>Bringing warmth to structured spaces. Striking gala installations and botanical retainers that elevate the daily environment.</p>
                 <a href="#contact" class="link-delicate link-inverse">Inquire for Events</a>
@@ -415,27 +312,15 @@
 
     <section id="contact" class="contact">
         <div class="contact-watermark gwendolyn-script">&</div>
-        
         <h2>Let's set the scene.</h2>
         <p class="micro-text">Currently accepting inquiries in Washington, D.C.</p>
         
         <form action="#" method="POST">
-            <div class="form-group">
-                <input type="text" placeholder="Name" required>
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email Address" required>
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Nature of Inquiry (Wedding, Event, Retainer)">
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Event Date or Ideal Timeline">
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Venue / Location in the District">
-            </div>
-            
+            <div class="form-group"><input type="text" placeholder="Name" required></div>
+            <div class="form-group"><input type="email" placeholder="Email Address" required></div>
+            <div class="form-group"><input type="text" placeholder="Nature of Inquiry (Wedding, Event, Retainer)"></div>
+            <div class="form-group"><input type="text" placeholder="Event Date or Ideal Timeline"></div>
+            <div class="form-group"><input type="text" placeholder="Venue / Location in the District"></div>
             <div class="form-submit">
                 <button type="submit" class="link-delicate">Submit Inquiry</button>
             </div>
