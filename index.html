@@ -24,6 +24,7 @@
             --space-1: calc(var(--baseline) * 1);   /* 8px */
             --space-2: calc(var(--baseline) * 2);   /* 16px */
             --space-4: calc(var(--baseline) * 4);   /* 32px */
+            --space-6: calc(var(--baseline) * 6);   /* 48px */
             --space-8: calc(var(--baseline) * 8);   /* 64px */
             --space-12: calc(var(--baseline) * 12); /* 96px */
             --space-16: calc(var(--baseline) * 16); /* 128px */
@@ -162,6 +163,7 @@
             line-height: var(--space-8);
             color: var(--charcoal);
             text-decoration: none;
+            transition: color 0.5s ease;
         }
 
         .nav-links {
@@ -169,12 +171,27 @@
             gap: var(--space-8);
             align-items: center;
         }
-        
+
         .nav-links a {
             text-decoration: none;
-            transition: color 0.4s;
+            transition: color 0.5s ease, box-shadow 0.5s ease;
         }
         .nav-links a:hover { color: #000; }
+
+        /* Inverse state — flips nav text to parchment while the oxblood section is under the nav */
+        .nav--inverse .nav-logo,
+        .nav--inverse .nav-links a,
+        .nav--inverse .micro-text {
+            color: var(--parchment);
+        }
+        .nav--inverse .link-delicate {
+            color: var(--parchment);
+            box-shadow: inset 0 -1px 0 0 var(--hairline-light);
+        }
+        .nav--inverse .link-delicate:hover {
+            box-shadow: inset 0 -1px 0 0 var(--parchment);
+            color: #FFF;
+        }
 
         /* Hero */
         .hero {
@@ -190,7 +207,7 @@
         .hero-logo {
             width: var(--space-24); /* Locks exactly to grid scale */
             height: auto;
-            margin-bottom: var(--space-8);
+            margin-bottom: var(--space-6);
             opacity: 0.9; /* Softens the true black slightly to match Charcoal */
             /* filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.05)); Optional soft shadow */
         }
@@ -239,7 +256,7 @@
         }
 
         .service-col p {
-            margin-bottom: var(--space-8);
+            margin-bottom: var(--space-6);
             max-width: 300px;
             opacity: 0.8;
             font-weight: 200;
@@ -297,7 +314,7 @@
         }
 
         .contact > p {
-            margin-bottom: var(--space-12);
+            margin-bottom: var(--space-8);
             position: relative;
             z-index: 2;
         }
@@ -374,14 +391,10 @@
             align-items: center;
         }
 
-        .footer-seal {
-            width: var(--space-8);
-            height: var(--space-8);
-            box-shadow: 0 0 0 1px var(--hairline-dark);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .footer-mark {
+            width: var(--space-12);
+            height: auto;
+            opacity: 0.9;
         }
 
         /* Responsive Breakpoints (Maintaining Math) */
@@ -421,7 +434,7 @@
 
     <section id="approach" class="manifesto">
         <div class="manifesto-inner">
-            <p style="font-size: 1.5rem; line-height: 3rem;">Gabi Looney Floral is a Washington, D.C. studio designing sculptural florals for weddings, private celebrations, and the city’s lobbies, galas, and offices. Loose, alive, rooted in movement — work meant to be felt, not just seen.</p>
+            <p>Gabi Looney Floral is a Washington, D.C. studio designing sculptural florals for weddings, private celebrations, and the city’s lobbies, galas, and offices. Loose, alive, rooted in movement — work meant to be felt, not just seen.</p>
         </div>
     </section>
 
@@ -479,8 +492,17 @@
     </section>
 
     <footer>
-        <div class="footer-seal micro-text">GL</div>
+        <img class="footer-mark" src="assets/gl-floral.png" alt="Gabi Looney Floral">
     </footer>
+
+    <script>
+        const nav = document.querySelector('nav');
+        const oxblood = document.querySelector('#services');
+        new IntersectionObserver(
+            ([entry]) => nav.classList.toggle('nav--inverse', entry.isIntersecting),
+            { rootMargin: '-64px 0px -85% 0px', threshold: 0 }
+        ).observe(oxblood);
+    </script>
 
 </body>
 </html>
