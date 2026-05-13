@@ -7,19 +7,17 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,SOFT,WONK,wght@9..144,0..100,0..1,300..900&family=Gwendolyn:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,SOFT,WONK,wght@9..144,0..100,0..1,200..900&family=Gwendolyn:wght@400;700&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CSS VARIABLES (The Brand Palette) --- */
         :root {
-            --parchment: #F5F0E6;
-            --oxblood: #8B0000;
-            --charcoal: #2C2C2C;
-            --border-light: rgba(44, 44, 44, 0.2);
-            --border-dark: rgba(245, 240, 230, 0.3);
+            --parchment: #F8F5F0; /* Slightly softer, brighter parchment */
+            --oxblood: #7A0000; /* Deepened the red for more gravity */
+            --charcoal: #222222;
+            --hairline-dark: rgba(34, 34, 34, 0.15);
+            --hairline-light: rgba(248, 245, 240, 0.2);
         }
 
-        /* --- GLOBAL RESET & TYPOGRAPHY --- */
         * {
             margin: 0;
             padding: 0;
@@ -31,108 +29,109 @@
             color: var(--charcoal);
             font-family: 'Inter', sans-serif;
             font-weight: 300;
-            line-height: 1.6;
+            line-height: 1.8;
             overflow-x: hidden;
-            /* Subtle film grain effect using a noise image URL if desired, 
-               or just relying on the soft parchment color */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* The Mincho Inkbleed Fraunces Setup */
-        h1, h2, h3, .fraunces-heading {
+        /* The Reveal Animation */
+        @keyframes softReveal {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            animation: softReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        .reveal-delay-1 { animation-delay: 0.3s; opacity: 0; }
+        .reveal-delay-2 { animation-delay: 0.6s; opacity: 0; }
+
+        /* Typography */
+        h1, h2, h3 {
             font-family: 'Fraunces', serif;
-            font-weight: 300;
-            /* opsz 144 = max contrast, SOFT 100 = inkbleed roundness, WONK 1 = slight organic tilt */
+            font-weight: 200; /* Dropped the weight for extreme delicacy */
             font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
-            line-height: 1.1;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
         }
 
         .gwendolyn-script {
             font-family: 'Gwendolyn', cursive;
-            font-weight: 700;
+            font-weight: 400;
         }
 
-        /* --- EDITORIAL BUTTONS --- */
-        .btn {
-            display: inline-block;
-            text-transform: uppercase;
+        .micro-text {
             font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            padding: 1rem 2.5rem;
-            border: 1px solid var(--charcoal);
+            font-weight: 400;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(34, 34, 34, 0.6);
+        }
+
+        /* Delicate Buttons/Links */
+        .link-delicate {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
             color: var(--charcoal);
             text-decoration: none;
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--hairline-dark);
+            transition: all 0.5s ease;
         }
 
-        /* The "Letterpress" Hover Effect */
-        .btn:hover {
-            background-color: var(--charcoal);
+        .link-delicate:hover {
+            border-bottom-color: var(--charcoal);
+            color: #000;
+        }
+
+        .link-inverse {
             color: var(--parchment);
-            transform: translate(1px, 1px);
-            box-shadow: -1px -1px 0px rgba(0,0,0,0.1);
+            border-bottom-color: var(--hairline-light);
         }
 
-        .btn-solid {
-            background-color: var(--charcoal);
-            color: var(--parchment);
-        }
-        .btn-solid:hover {
-            background-color: transparent;
-            color: var(--charcoal);
+        .link-inverse:hover {
+            border-bottom-color: var(--parchment);
+            color: #FFF;
         }
 
-        .btn-inverse {
-            border-color: var(--parchment);
-            color: var(--parchment);
-        }
-        .btn-inverse:hover {
-            background-color: var(--parchment);
-            color: var(--oxblood);
-        }
-
-        /* --- NAVIGATION --- */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 4rem;
+            padding: 2.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(245, 240, 230, 0.95);
-            backdrop-filter: blur(5px);
+            background: linear-gradient(to bottom, rgba(248, 245, 240, 1) 0%, rgba(248, 245, 240, 0) 100%);
             z-index: 100;
-            border-bottom: 1px solid var(--border-light);
         }
         
         .nav-logo {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--charcoal);
             text-decoration: none;
-            line-height: 1;
         }
 
         .nav-links {
             display: flex;
-            align-items: center;
-            gap: 2.5rem;
+            gap: 4rem; /* Extreme spacing */
         }
         
         .nav-links a {
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            color: var(--charcoal);
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: color 0.4s;
         }
-        .nav-links a:hover { opacity: 0.6; }
+        .nav-links a:hover { color: #000; }
 
-        /* --- HERO SECTION --- */
+        /* Hero */
         .hero {
             height: 100vh;
             display: flex;
@@ -141,88 +140,91 @@
             align-items: center;
             text-align: center;
             padding: 0 2rem;
-            margin-top: 2rem;
         }
 
         .hero-logo-placeholder {
-            width: 250px;
-            height: 250px;
-            margin-bottom: 3rem;
+            width: 180px; /* Smaller, more precious */
+            height: 180px;
+            margin-bottom: 4rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--hairline-dark);
             border-radius: 50%;
-            color: var(--charcoal);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 6rem);
-            max-width: 900px;
-            margin-bottom: 3rem;
+            font-size: clamp(3.5rem, 7vw, 7rem);
+            max-width: 1000px;
+            margin-bottom: 4rem;
+            color: var(--charcoal);
         }
 
-        /* --- MANIFESTO (THE APPROACH) --- */
+        /* Manifesto */
         .manifesto {
-            padding: 8rem 4rem;
+            padding: 12rem 4rem; /* Massive vertical breathing room */
             display: flex;
             justify-content: center;
         }
 
-        .manifesto-box {
-            max-width: 800px;
+        .manifesto-inner {
+            max-width: 700px;
             text-align: center;
-            padding: 4rem 0;
-            border-top: 1px solid var(--charcoal);
-            border-bottom: 1px solid var(--charcoal);
         }
 
-        .manifesto-box p {
-            font-size: clamp(1.2rem, 2vw, 1.8rem);
-            line-height: 1.5;
+        .manifesto-inner p {
+            font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+            line-height: 1.4;
+            color: rgba(34, 34, 34, 0.85);
         }
 
-        /* --- SPLIT FUNNEL (SERVICES) --- */
+        /* Services (The Oxblood Section) */
         .services {
             background-color: var(--oxblood);
             color: var(--parchment);
+            display: flex;
+            flex-direction: column;
+            padding: 10rem 4rem;
+        }
+
+        .services-grid {
             display: grid;
-            grid-template-columns: 1fr 1px 1fr; /* 1px column is the divider */
-            min-height: 80vh;
+            grid-template-columns: 1fr 1px 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .service-divider {
-            background-color: var(--border-dark);
+            background-color: var(--hairline-light);
             height: 100%;
             width: 1px;
         }
 
-        .service-column {
-            padding: 8rem 6rem;
+        .service-col {
+            padding: 4rem 8rem; /* Extreme inner padding */
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            text-align: center;
         }
 
-        .service-column h2 {
-            font-size: clamp(2.5rem, 4vw, 4rem);
-            margin-bottom: 1.5rem;
+        .service-col h2 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            margin-bottom: 2rem;
         }
 
-        .service-column p {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 400px;
-            opacity: 0.9;
+        .service-col p {
+            font-size: 1rem;
+            margin-bottom: 4rem;
+            max-width: 300px;
+            opacity: 0.8;
+            font-weight: 200;
         }
 
-        /* --- CONTACT SECTION --- */
+        /* Contact */
         .contact {
-            padding: 8rem 4rem;
+            padding: 12rem 4rem;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -232,199 +234,192 @@
 
         .contact-watermark {
             position: absolute;
-            top: 40%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 45rem;
+            font-size: 55rem;
             line-height: 0;
             color: var(--charcoal);
-            opacity: 0.03;
+            opacity: 0.02; /* Almost invisible */
             pointer-events: none;
-            z-index: 0;
-        }
-
-        .contact-content {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 700px;
         }
 
         .contact h2 {
-            font-size: clamp(3rem, 5vw, 5rem);
-            text-align: center;
+            font-size: clamp(4rem, 6vw, 6.5rem);
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
         }
 
         .contact > p {
-            text-align: center;
-            margin-bottom: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.8rem;
+            margin-bottom: 6rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        form {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
         }
 
         .form-group {
-            margin-bottom: 2.5rem;
+            margin-bottom: 3.5rem;
+            position: relative;
         }
 
-        .form-group input, .form-group select {
+        .form-group input {
             width: 100%;
             background: transparent;
             border: none;
-            border-bottom: 1px solid var(--border-light);
-            padding: 1rem 0;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            border-bottom: 1px solid var(--hairline-dark);
+            padding: 0.5rem 0;
+            font-family: 'Fraunces', serif; /* Use the elegant serif for input text */
+            font-size: 1.5rem;
+            font-weight: 200;
             color: var(--charcoal);
             outline: none;
-            border-radius: 0;
-            -webkit-appearance: none;
-            transition: border-color 0.3s;
+            transition: border-color 0.6s ease;
         }
 
-        .form-group input:focus, .form-group select:focus {
-            border-bottom: 1px solid var(--charcoal);
+        .form-group input:focus {
+            border-bottom: 1px solid rgba(34, 34, 34, 0.6);
         }
 
-        .form-group input::placeholder, .form-group select::placeholder {
-            color: rgba(44, 44, 44, 0.5);
+        .form-group input::placeholder {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.2em;
+            color: rgba(34, 34, 34, 0.4);
+            transform: translateY(-8px);
         }
 
         .form-submit {
             text-align: center;
-            margin-top: 4rem;
+            margin-top: 5rem;
         }
 
-        /* --- FOOTER --- */
+        .form-submit button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Footer */
         footer {
-            padding: 4rem;
+            padding: 6rem 4rem 4rem 4rem;
             text-align: center;
-            border-top: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .footer-seal {
-            width: 50px;
-            height: 50px;
-            border: 1px solid var(--charcoal);
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--hairline-dark);
             border-radius: 50%;
-            margin: 0 auto 2rem auto;
+            margin-bottom: 3rem;
+        }
+
+        .footer-links {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.5rem;
+            gap: 3rem;
         }
 
-        .footer-links a {
-            color: var(--charcoal);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            margin: 0 1rem;
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 900px) {
-            nav { padding: 1.5rem 2rem; }
-            .nav-links a:not(.btn) { display: none; }
-            .services { grid-template-columns: 1fr; }
+        @media (max-width: 1000px) {
+            nav { padding: 2rem; }
+            .nav-links a:not(.btn-nav) { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
             .service-divider { width: 100%; height: 1px; }
-            .service-column { padding: 5rem 2rem; }
-            .manifesto { padding: 6rem 2rem; }
-            .contact { padding: 6rem 2rem; }
+            .service-col { padding: 6rem 2rem; }
+            .manifesto { padding: 8rem 2rem; }
+            .contact { padding: 8rem 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="nav-logo gwendolyn-script">gabi looney floral</a>
+    <nav class="reveal">
+        <a href="#" class="nav-logo gwendolyn-script">gabi looney</a>
         <div class="nav-links">
-            <a href="#approach">The Approach</a>
-            <a href="#services">Services</a>
-            <a href="#contact" class="btn">Inquire</a>
+            <a href="#approach" class="micro-text">The Approach</a>
+            <a href="#services" class="micro-text">Services</a>
+            <a href="#contact" class="link-delicate btn-nav">Inquire</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-logo-placeholder">
-            [ Block Print Logo Here ]
+        <div class="hero-logo-placeholder reveal reveal-delay-1 micro-text">
+            [ Print ]
         </div>
-        <h1>Florals that change the room.</h1>
-        <a href="#contact" class="btn btn-solid">Begin a conversation</a>
+        <h1 class="reveal reveal-delay-2">Florals that change the room.</h1>
+        <div class="reveal reveal-delay-2">
+            <a href="#contact" class="link-delicate">Begin a conversation</a>
+        </div>
     </section>
 
     <section id="approach" class="manifesto">
-        <div class="manifesto-box">
+        <div class="manifesto-inner">
             <p>We believe flowers should feel alive, not just arranged. Whether we are softening a marble lobby in the District or framing a wedding aisle, our work is rooted in movement, texture, and the quiet beauty of the natural world. It’s intentional, sculptural design meant to be felt, not just seen.</p>
         </div>
     </section>
 
     <section id="services" class="services">
-        <div class="service-column">
-            <h2>The Celebration.</h2>
-            <p>Florals designed around the feeling of your day. Loose, sculptural, and deeply personal—from the bouquet to the final tablescape.</p>
-            <a href="#contact" class="btn btn-inverse">Inquire for Weddings</a>
-        </div>
-        
-        <div class="service-divider"></div>
+        <div class="services-grid">
+            <div class="service-col">
+                <h2>The Celebration.</h2>
+                <p>Florals designed around the feeling of your day. Loose, sculptural, and deeply personal—from the bouquet to the final tablescape.</p>
+                <a href="#contact" class="link-delicate link-inverse">Inquire for Weddings</a>
+            </div>
+            
+            <div class="service-divider"></div>
 
-        <div class="service-column">
-            <h2>The District.</h2>
-            <p>Bringing warmth to structured spaces. Striking gala installations and botanical retainers that elevate the daily environment.</p>
-            <a href="#contact" class="btn btn-inverse">Inquire for Events</a>
+            <div class="service-col">
+                <h2>The District.</h2>
+                <p>Bringing warmth to structured spaces. Striking gala installations and botanical retainers that elevate the daily environment.</p>
+                <a href="#contact" class="link-delicate link-inverse">Inquire for Events</a>
+            </div>
         </div>
     </section>
 
     <section id="contact" class="contact">
         <div class="contact-watermark gwendolyn-script">&</div>
         
-        <div class="contact-content">
-            <h2>Let's set the scene.</h2>
-            <p style="text-align: center; margin-bottom: 4rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem;">Currently accepting inquiries in Washington, D.C. and beyond.</p>
+        <h2>Let's set the scene.</h2>
+        <p class="micro-text">Currently accepting inquiries in Washington, D.C.</p>
+        
+        <form action="#" method="POST">
+            <div class="form-group">
+                <input type="text" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Nature of Inquiry (Wedding, Event, Retainer)">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Event Date or Ideal Timeline">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Venue / Location in the District">
+            </div>
             
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <input type="text" placeholder="Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
-                </div>
-                <div class="form-group">
-                    <select required>
-                        <option value="" disabled selected>I am inquiring about...</option>
-                        <option value="wedding">A Wedding</option>
-                        <option value="event">An Event / Gala</option>
-                        <option value="retainer">A Corporate Retainer</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Event Date or Timeline">
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Venue / Location">
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="How can we help? (Tell us about the feeling you want to create)">
-                </div>
-                
-                <div class="form-submit">
-                    <button type="submit" class="btn btn-solid">Submit Inquiry</button>
-                </div>
-            </form>
-        </div>
+            <div class="form-submit">
+                <button type="submit" class="link-delicate">Submit Inquiry</button>
+            </div>
+        </form>
     </section>
 
     <footer>
-        <div class="footer-seal">Seal</div>
+        <div class="footer-seal micro-text">GL</div>
         <div class="footer-links">
-            <a href="#">Instagram</a>
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
+            <a href="#" class="micro-text link-delicate" style="border:none;">Instagram</a>
+            <a href="#" class="micro-text link-delicate" style="border:none;">Journal</a>
         </div>
     </footer>
 
