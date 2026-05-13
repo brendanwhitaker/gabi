@@ -183,15 +183,12 @@
             padding: var(--space-24) var(--space-4) 0 var(--space-4);
         }
 
-        .hero-logo-placeholder {
-            width: var(--space-24);
-            height: var(--space-24);
+        .hero-logo {
+            width: var(--space-24); /* Locks exactly to grid scale */
+            height: auto;
             margin-bottom: var(--space-8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 0 1px var(--hairline-dark); /* Grid-safe border */
-            border-radius: 50%;
+            opacity: 0.9; /* Softens the true black slightly to match Charcoal */
+            /* filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.05)); Optional soft shadow */
         }
 
         /* Manifesto */
@@ -384,9 +381,8 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-logo-placeholder reveal reveal-delay-1 micro-text">
-            [ Print ]
-        </div>
+        <img src="GL Floral transparent.png" alt="Gabi Looney Floral Botanical Mark" class="hero-logo reveal reveal-delay-1">
+        
         <h1 class="reveal reveal-delay-2">Florals that change the room.</h1>
         <div class="reveal reveal-delay-2">
             <a href="#contact" class="link-delicate">Begin a conversation</a>
