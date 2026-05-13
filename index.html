@@ -10,12 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,SOFT,WONK,wght@9..144,0..100,0..1,200..900&family=Gwendolyn:wght@400;700&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
 
     <style>
+        /* --- THE EDITORIAL SYSTEM --- */
         :root {
-            --parchment: #F8F5F0; /* Slightly softer, brighter parchment */
-            --oxblood: #7A0000; /* Deepened the red for more gravity */
+            /* Color Palette */
+            --parchment: #F8F5F0; 
+            --oxblood: #7A0000; 
             --charcoal: #222222;
             --hairline-dark: rgba(34, 34, 34, 0.15);
             --hairline-light: rgba(248, 245, 240, 0.2);
+
+            /* The Baseline Grid (Base: 16px / Grid unit: 8px or 0.5rem) */
+            --baseline: 0.5rem;
+            --space-1: calc(var(--baseline) * 1);   /* 8px */
+            --space-2: calc(var(--baseline) * 2);   /* 16px */
+            --space-4: calc(var(--baseline) * 4);   /* 32px */
+            --space-8: calc(var(--baseline) * 8);   /* 64px */
+            --space-12: calc(var(--baseline) * 12); /* 96px */
+            --space-16: calc(var(--baseline) * 16); /* 128px */
+            --space-24: calc(var(--baseline) * 24); /* 192px */
         }
 
         * {
@@ -29,7 +41,9 @@
             color: var(--charcoal);
             font-family: 'Inter', sans-serif;
             font-weight: 300;
-            line-height: 1.8;
+            /* Strict baseline adherence for body copy */
+            font-size: 1rem; 
+            line-height: var(--space-4); 
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -37,24 +51,55 @@
 
         /* The Reveal Animation */
         @keyframes softReveal {
-            0% { opacity: 0; transform: translateY(15px); }
+            0% { opacity: 0; transform: translateY(var(--space-2)); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        .reveal {
-            animation: softReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-        
+        .reveal { animation: softReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         .reveal-delay-1 { animation-delay: 0.3s; opacity: 0; }
         .reveal-delay-2 { animation-delay: 0.6s; opacity: 0; }
 
-        /* Typography */
-        h1, h2, h3 {
+        /* --- TYPOGRAPHIC HIERARCHY --- */
+        
+        /* H1: Massive scale. Razor sharp. (No inkbleed) */
+        h1 {
             font-family: 'Fraunces', serif;
-            font-weight: 200; /* Dropped the weight for extreme delicacy */
-            font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
-            line-height: 1.05;
+            font-weight: 200;
+            font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+            font-size: 6rem;
+            line-height: var(--space-12); /* 96px line height aligns to grid */
             letter-spacing: -0.02em;
+            margin-bottom: var(--space-8);
+            color: var(--charcoal);
+        }
+
+        /* H2: Large scale. A whisper of softness. */
+        h2 {
+            font-family: 'Fraunces', serif;
+            font-weight: 200;
+            font-variation-settings: 'opsz' 144, 'SOFT' 10, 'WONK' 1;
+            font-size: 4rem;
+            line-height: var(--space-8); /* 64px line height */
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-4);
+        }
+
+        /* Manifesto Text: Elegant, airy reading. */
+        .manifesto-inner p {
+            font-size: 1.5rem;
+            line-height: var(--space-6); /* 48px line height */
+            color: rgba(34, 34, 34, 0.85);
+        }
+
+        /* Micro-text: Utilitarian, locks to a tight grid. */
+        .micro-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.625rem; /* 10px */
+            line-height: var(--space-2); /* 16px */
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(34, 34, 34, 0.6);
         }
 
         .gwendolyn-script {
@@ -62,51 +107,45 @@
             font-weight: 400;
         }
 
-        .micro-text {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(34, 34, 34, 0.6);
-        }
-
-        /* Delicate Buttons/Links */
+        /* --- DELICATE UI ELEMENTS --- */
         .link-delicate {
             display: inline-block;
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            font-size: 0.65rem;
+            font-size: 0.625rem;
+            line-height: var(--space-2);
             text-transform: uppercase;
             letter-spacing: 0.25em;
             color: var(--charcoal);
             text-decoration: none;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px solid var(--hairline-dark);
+            padding-bottom: var(--space-1);
+            /* Box-shadow used instead of border-bottom to preserve grid math */
+            box-shadow: inset 0 -1px 0 0 var(--hairline-dark);
             transition: all 0.5s ease;
         }
 
         .link-delicate:hover {
-            border-bottom-color: var(--charcoal);
+            box-shadow: inset 0 -1px 0 0 var(--charcoal);
             color: #000;
         }
 
         .link-inverse {
             color: var(--parchment);
-            border-bottom-color: var(--hairline-light);
+            box-shadow: inset 0 -1px 0 0 var(--hairline-light);
         }
 
         .link-inverse:hover {
-            border-bottom-color: var(--parchment);
+            box-shadow: inset 0 -1px 0 0 var(--parchment);
             color: #FFF;
         }
 
-        /* Navigation */
+        /* --- STRUCTURAL LAYOUT --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 2.5rem 4rem;
+            height: var(--space-16); /* Exactly 128px high */
+            padding: 0 var(--space-8);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -115,14 +154,16 @@
         }
         
         .nav-logo {
-            font-size: 2.2rem;
+            font-size: 2rem;
+            line-height: var(--space-8);
             color: var(--charcoal);
             text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 4rem; /* Extreme spacing */
+            gap: var(--space-8);
+            align-items: center;
         }
         
         .nav-links a {
@@ -133,36 +174,29 @@
 
         /* Hero */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 2rem;
+            padding: var(--space-24) var(--space-4) 0 var(--space-4);
         }
 
         .hero-logo-placeholder {
-            width: 180px; /* Smaller, more precious */
-            height: 180px;
-            margin-bottom: 4rem;
+            width: var(--space-24);
+            height: var(--space-24);
+            margin-bottom: var(--space-8);
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid var(--hairline-dark);
+            box-shadow: 0 0 0 1px var(--hairline-dark); /* Grid-safe border */
             border-radius: 50%;
-        }
-
-        .hero h1 {
-            font-size: clamp(3.5rem, 7vw, 7rem);
-            max-width: 1000px;
-            margin-bottom: 4rem;
-            color: var(--charcoal);
         }
 
         /* Manifesto */
         .manifesto {
-            padding: 12rem 4rem; /* Massive vertical breathing room */
+            padding: var(--space-24) var(--space-8); 
             display: flex;
             justify-content: center;
         }
@@ -172,19 +206,13 @@
             text-align: center;
         }
 
-        .manifesto-inner p {
-            font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-            line-height: 1.4;
-            color: rgba(34, 34, 34, 0.85);
-        }
-
         /* Services (The Oxblood Section) */
         .services {
             background-color: var(--oxblood);
             color: var(--parchment);
             display: flex;
             flex-direction: column;
-            padding: 10rem 4rem;
+            padding: var(--space-24) var(--space-8);
         }
 
         .services-grid {
@@ -202,21 +230,15 @@
         }
 
         .service-col {
-            padding: 4rem 8rem; /* Extreme inner padding */
+            padding: var(--space-8) var(--space-12);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
         }
 
-        .service-col h2 {
-            font-size: clamp(3rem, 5vw, 5rem);
-            margin-bottom: 2rem;
-        }
-
         .service-col p {
-            font-size: 1rem;
-            margin-bottom: 4rem;
+            margin-bottom: var(--space-8);
             max-width: 300px;
             opacity: 0.8;
             font-weight: 200;
@@ -224,7 +246,7 @@
 
         /* Contact */
         .contact {
-            padding: 12rem 4rem;
+            padding: var(--space-24) var(--space-8);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -237,22 +259,20 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 55rem;
+            font-size: 50rem;
             line-height: 0;
             color: var(--charcoal);
-            opacity: 0.02; /* Almost invisible */
+            opacity: 0.02;
             pointer-events: none;
         }
 
         .contact h2 {
-            font-size: clamp(4rem, 6vw, 6.5rem);
-            margin-bottom: 1rem;
             position: relative;
             z-index: 2;
         }
 
         .contact > p {
-            margin-bottom: 6rem;
+            margin-bottom: var(--space-12);
             position: relative;
             z-index: 2;
         }
@@ -265,32 +285,36 @@
         }
 
         .form-group {
-            margin-bottom: 3.5rem;
+            margin-bottom: var(--space-8);
             position: relative;
         }
 
+        /* Form Inputs: Smaller size, higher SOFT axis for true inkbleed */
         .form-group input {
             width: 100%;
             background: transparent;
             border: none;
-            border-bottom: 1px solid var(--hairline-dark);
-            padding: 0.5rem 0;
-            font-family: 'Fraunces', serif; /* Use the elegant serif for input text */
+            box-shadow: inset 0 -1px 0 0 var(--hairline-dark);
+            padding: var(--space-2) 0;
+            font-family: 'Fraunces', serif; 
             font-size: 1.5rem;
+            line-height: var(--space-4);
             font-weight: 200;
+            /* Dialed down opsz, dialed up SOFT for tactile ink pooling */
+            font-variation-settings: 'opsz' 72, 'SOFT' 50, 'WONK' 1;
             color: var(--charcoal);
             outline: none;
-            transition: border-color 0.6s ease;
+            transition: box-shadow 0.6s ease;
         }
 
         .form-group input:focus {
-            border-bottom: 1px solid rgba(34, 34, 34, 0.6);
+            box-shadow: inset 0 -1px 0 0 rgba(34, 34, 34, 0.6);
         }
 
         .form-group input::placeholder {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            font-size: 0.65rem;
+            font-size: 0.625rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: rgba(34, 34, 34, 0.4);
@@ -299,7 +323,7 @@
 
         .form-submit {
             text-align: center;
-            margin-top: 5rem;
+            margin-top: var(--space-12);
         }
 
         .form-submit button {
@@ -310,7 +334,7 @@
 
         /* Footer */
         footer {
-            padding: 6rem 4rem 4rem 4rem;
+            padding: var(--space-12) var(--space-8) var(--space-8) var(--space-8);
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -318,26 +342,33 @@
         }
 
         .footer-seal {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--hairline-dark);
+            width: var(--space-8);
+            height: var(--space-8);
+            box-shadow: 0 0 0 1px var(--hairline-dark);
             border-radius: 50%;
-            margin-bottom: 3rem;
+            margin-bottom: var(--space-8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .footer-links {
             display: flex;
-            gap: 3rem;
+            gap: var(--space-8);
         }
 
+        /* Responsive Breakpoints (Maintaining Math) */
         @media (max-width: 1000px) {
-            nav { padding: 2rem; }
+            nav { padding: 0 var(--space-4); }
             .nav-links a:not(.btn-nav) { display: none; }
+            h1 { font-size: 4rem; line-height: var(--space-8); }
+            h2 { font-size: 3rem; line-height: var(--space-6); }
+            .manifesto-inner p { font-size: 1.125rem; line-height: var(--space-4); }
             .services-grid { grid-template-columns: 1fr; }
             .service-divider { width: 100%; height: 1px; }
-            .service-col { padding: 6rem 2rem; }
-            .manifesto { padding: 8rem 2rem; }
-            .contact { padding: 8rem 2rem; }
+            .service-col { padding: var(--space-12) var(--space-4); }
+            .manifesto { padding: var(--space-16) var(--space-4); }
+            .contact { padding: var(--space-16) var(--space-4); }
         }
     </style>
 </head>
@@ -364,7 +395,7 @@
 
     <section id="approach" class="manifesto">
         <div class="manifesto-inner">
-            <p>We believe flowers should feel alive, not just arranged. Whether we are softening a marble lobby in the District or framing a wedding aisle, our work is rooted in movement, texture, and the quiet beauty of the natural world. It’s intentional, sculptural design meant to be felt, not just seen.</p>
+            <p style="font-size: 1.5rem; line-height: 3rem;">We believe flowers should feel alive, not just arranged. Whether we are softening a marble lobby in the District or framing a wedding aisle, our work is rooted in movement, texture, and the quiet beauty of the natural world. It’s intentional, sculptural design meant to be felt, not just seen.</p>
         </div>
     </section>
 
@@ -418,8 +449,8 @@
     <footer>
         <div class="footer-seal micro-text">GL</div>
         <div class="footer-links">
-            <a href="#" class="micro-text link-delicate" style="border:none;">Instagram</a>
-            <a href="#" class="micro-text link-delicate" style="border:none;">Journal</a>
+            <a href="#" class="micro-text link-delicate" style="box-shadow: none;">Instagram</a>
+            <a href="#" class="micro-text link-delicate" style="box-shadow: none;">Journal</a>
         </div>
     </footer>
 
