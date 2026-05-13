@@ -315,13 +315,14 @@
         }
 
         /* Form Inputs: Smaller size, higher SOFT axis for true inkbleed */
-        .form-group input {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
             background: transparent;
             border: none;
             box-shadow: inset 0 -1px 0 0 var(--hairline-dark);
             padding: var(--space-2) 0;
-            font-family: 'Fraunces', serif; 
+            font-family: 'Fraunces', serif;
             font-size: 1.5rem;
             line-height: var(--space-4);
             font-weight: 200;
@@ -332,11 +333,18 @@
             transition: box-shadow 0.6s ease;
         }
 
-        .form-group input:focus {
+        .form-group textarea {
+            resize: vertical;
+            min-height: var(--space-8);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
             box-shadow: inset 0 -1px 0 0 rgba(34, 34, 34, 0.6);
         }
 
-        .form-group input::placeholder {
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
             font-size: 0.625rem;
@@ -359,7 +367,7 @@
 
         /* Footer */
         footer {
-            padding: var(--space-12) var(--space-8) var(--space-8) var(--space-8);
+            padding: var(--space-12) var(--space-8);
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -371,15 +379,9 @@
             height: var(--space-8);
             box-shadow: 0 0 0 1px var(--hairline-dark);
             border-radius: 50%;
-            margin-bottom: var(--space-8);
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: var(--space-8);
         }
 
         /* Responsive Breakpoints (Maintaining Math) */
@@ -419,7 +421,7 @@
 
     <section id="approach" class="manifesto">
         <div class="manifesto-inner">
-            <p style="font-size: 1.5rem; line-height: 3rem;">We believe flowers should feel alive, not just arranged. Whether we are softening a marble lobby in the District or framing a wedding aisle, our work is rooted in movement, texture, and the quiet beauty of the natural world. It’s intentional, sculptural design meant to be felt, not just seen.</p>
+            <p style="font-size: 1.5rem; line-height: 3rem;">Gabi Looney Floral is a Washington, D.C. studio designing sculptural florals for weddings, private celebrations, and the city’s lobbies, galas, and offices. Loose, alive, rooted in movement — work meant to be felt, not just seen.</p>
         </div>
     </section>
 
@@ -428,7 +430,7 @@
             <div class="service-col">
                 <div class="service-mark service-mark-wedding" role="img" aria-label="Wedding floral mark"></div>
                 <h2>The Celebration.</h2>
-                <p>Florals designed around the feeling of your day. Loose, sculptural, and deeply personal—from the bouquet to the final tablescape.</p>
+                <p>Weddings and private celebrations. Bridal bouquets, ceremony arches, and reception tablescapes—florals designed around the feeling of your day, never pulled from a catalog.</p>
                 <a href="#contact" class="link-delicate link-inverse">Inquire for Weddings</a>
             </div>
 
@@ -437,8 +439,8 @@
             <div class="service-col">
                 <div class="service-mark service-mark-corporate" role="img" aria-label="Corporate floral mark"></div>
                 <h2>The District.</h2>
-                <p>Bringing warmth to structured spaces. Striking gala installations and botanical retainers that elevate the daily environment.</p>
-                <a href="#contact" class="link-delicate link-inverse">Inquire for Events</a>
+                <p>Corporate and hospitality florals. Gala and brand-activation installations, plus weekly retainers that bring living warmth to lobbies, offices, and event spaces across D.C.</p>
+                <a href="#contact" class="link-delicate link-inverse">Inquire for Corporate</a>
             </div>
         </div>
     </section>
@@ -449,23 +451,27 @@
         <h2>Let's set the scene.</h2>
         <p class="micro-text">Currently accepting inquiries in Washington, D.C.</p>
         
-        <form action="#" method="POST">
+        <form action="https://formspree.io/f/xqenjoda" method="POST">
+            <input type="hidden" name="_subject" value="New inquiry — gabilooneyfloral.com">
             <div class="form-group">
-                <input type="text" placeholder="Name" required>
+                <input type="text" name="name" placeholder="Name" required>
             </div>
             <div class="form-group">
-                <input type="email" placeholder="Email Address" required>
+                <input type="email" name="email" placeholder="Email Address" required>
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Nature of Inquiry (Wedding, Event, Retainer)">
+                <input type="text" name="inquiry-type" placeholder="Nature of Inquiry (Wedding, Corporate Event, Weekly Retainer)">
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Event Date or Ideal Timeline">
+                <input type="text" name="timeline" placeholder="Event Date or Ideal Timeline">
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Venue / Location in the District">
+                <input type="text" name="venue" placeholder="Venue or Location">
             </div>
-            
+            <div class="form-group">
+                <textarea name="message" placeholder="A Few Details (Vision, Guest Count, Budget Range)" rows="3"></textarea>
+            </div>
+
             <div class="form-submit">
                 <button type="submit" class="link-delicate">Submit Inquiry</button>
             </div>
@@ -474,10 +480,6 @@
 
     <footer>
         <div class="footer-seal micro-text">GL</div>
-        <div class="footer-links">
-            <a href="#" class="micro-text link-delicate" style="box-shadow: none;">Instagram</a>
-            <a href="#" class="micro-text link-delicate" style="box-shadow: none;">Journal</a>
-        </div>
     </footer>
 
 </body>
